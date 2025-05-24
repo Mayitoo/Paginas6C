@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <link rel="icon" href="img/favicon_circular.ico" type="image/x-icon">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Actividades Recreativas</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <style>
+    body {
+      background: linear-gradient(to bottom, #d5af00, #f8e473);
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .titulo {
+      background-color: #c73648;
+      color: #d5af00;
+      font-size: 3rem;
+      font-weight: bold;
+      text-align: center;
+      padding: 25px 10px;
+    }
+
+    .contenido {
+      display: flex;
+      flex-wrap: wrap;
+      padding: 40px;
+      gap: 40px;
+      justify-content: center;
+    }
+
+    .texto-grande {
+      flex: 2;
+      background-color: rgba(255, 255, 255, 0.9);
+      padding: 30px;
+      border-radius: 12px;
+      font-size: 1.3rem;
+      line-height: 1.8;
+      text-align: justify;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+      max-width: 800px;
+    }
+
+    .derecha {
+      flex: 1;
+      max-width: 400px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .slider-container {
+      position: relative;
+      width: 100%;
+      padding-top: 100%; /* Proporción 1:1 para cuadrado */
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+    }
+
+    .slider-container .carousel {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .slider-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .frase {
+      font-style: italic;
+      font-size: 1rem;
+      background-color: rgba(255, 255, 255, 0.8);
+      padding: 15px 20px;
+      text-align: center;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      width: 100%;
+    }
+
+    @media (max-width: 768px) {
+      .contenido {
+        flex-direction: column;
+        padding: 20px;
+      }
+
+      .texto-grande {
+        font-size: 1.1rem;
+      }
+
+      .frase {
+        font-size: 0.95rem;
+      }
+    }
+    background: linear-gradient(to bottom, #d5af00, #f8e473);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      animation: fadeIn 1s ease-in;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .nav-pills {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      margin: 0;
+      border-radius: 0;
+    }
+
+    .nav-link {
+      transition: all 0.3s ease;
+    }
+
+    .nav-link:hover {
+      background-color: yellow !important;
+      color: white !important;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+
+    .nav-link.active {
+      background-color: transparent !important;
+      color: white !important;
+    }
+
+    .titulo {
+      text-align: center;
+      font-size: 2.5rem;
+      font-weight: bold;
+      color: #d5af00;
+      background-color: #c73648;
+      padding: 15px 0;
+      margin-top: 10px;
+      border-radius: 10px;
+      animation: zoomIn 1s ease-in-out;
+    }
+
+    @keyframes zoomIn {
+      from { transform: scale(0.8); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    .banner {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+    }
+
+    .banner img {
+      max-width: 100%;
+      width: 700px;
+      border: 8px solid white;
+      border-radius: 10px;
+      transition: transform 0.4s;
+    }
+
+    .banner img:hover {
+      transform: scale(1.02);
+    }
+
+    .footer {
+      background-color: #d5af00;
+      color: black;
+      text-align: center;
+      padding: 20px 10px;
+      font-size: 14px;
+      margin-top: 30px;
+    }
+
+    .footer img {
+      height: 60px;
+      margin: 10px;
+    }
+
+    .footer p {
+      margin: 0;
+    }
+
+    .scroll-top-btn {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background-color: #c73648;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 45px;
+      height: 45px;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      cursor: pointer;
+      z-index: 1001;
+    }
+
+    .scroll-top-btn img {
+      width: 20px;
+      height: 20px;
+    }
+
+    .frase-motivacional {
+      text-align: center;
+      margin-top: 20px;
+      font-style: italic;
+      font-weight: 500;
+      color: #333;
+      background-color: rgba(255,255,255,0.6);
+      padding: 10px;
+      border-radius: 8px;
+      width: 70%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .actividades-container {
+      display: flex;
+      margin: 30px auto;
+      max-width: 1200px;
+      background-color: rgba(255, 255, 255, 0.7);
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .sidebar {
+      background-color: #e6007e;
+      color: white;
+      padding: 20px;
+      width: 25%;
+    }
+
+    .sidebar a {
+      display: block;
+      background-color: #ffcc00;
+      color: #e6007e;
+      padding: 15px;
+      margin-bottom: 15px;
+      font-weight: bold;
+      border-radius: 6px;
+      text-align: center;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      font-size: 1.1rem;
+    }
+
+    .sidebar a:hover {
+      background-color: #e6007e;
+      color: #ffcc00;
+      border-color: #ffcc00;
+      box-shadow: 0 0 0 4px #ffcc00;
+    }
+
+    .main-content {
+      padding: 30px;
+      width: 50%;
+      text-align: center;
+    }
+
+    .main-content img {
+      width: 90%;
+      border: 3px solid black;
+      margin-bottom: 20px;
+      border-radius: 8px;
+    }
+
+    .main-content p {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      color: #333;
+    }
+
+    .rightbar {
+      width: 25%;
+      padding: 20px;
+      background-color: #fff3cd;
+      font-size: 1rem;
+      color: #856404;
+    }
+
+    .rightbar p {
+      margin-bottom: 15px;
+    }
+
+    .home-btn {
+      position: fixed;
+      top: 80px;
+      right: 15px;
+      background-color: #e6007e;
+      color: white;
+      border: none;
+      border-radius: 30px;
+      width: 120px;
+      height: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      cursor: pointer;
+      z-index: 1001;
+      font-size: 14px;
+      font-weight: bold;
+      text-transform: capitalize;
+      transition: all 0.3s ease-in-out;
+    }
+
+    .home-btn img {
+      width: 20px;
+      height: 20px;
+      margin-left: 8px;
+      filter: invert(100%);
+    }
+
+    .home-btn:hover {
+      background-color: white;
+      color: #e6007e;
+      border: 2px solid yellow;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+      transform: translateY(-4px);
+    }
+
+    .home-btn:hover .home-text {
+      color: #e6007e;
+    }
+
+    .home-text {
+      margin-right: 8px;
+    }
+  </style>
+</head>
+<body>
+  <div class="titulo">RECREATIVAS</div>
+  <div class="contenido">
+    <div class="texto-grande">
+      <p>
+     <h2 style="font-weight: bold; font-size: 24px; color: #2c3e50;">
+  Eventos Recreativos, Posada Estudiantil y Conmemoración del 8M: Fomentando Valores y Convivencia en el COBAEJ
+</h2>
+<br>
+En el Colegio de Bachilleres del Estado de Jalisco (COBAEJ), la formación integral del estudiantado es una prioridad, y por ello se desarrollan actividades que no solo fortalecen el aprendizaje académico, sino también los valores humanos, la convivencia y la conciencia social.<br>
+<br>
+Como parte de estas acciones, durante el ciclo escolar se llevaron a cabo diversas actividades recreativas que promovieron el trabajo en equipo, el respeto y la participación activa. Uno de los momentos más significativos fue la tradicional posada estudiantil, organizada en el mes de diciembre. Esta celebración reunió a estudiantes de todos los grados en un ambiente de alegría y unión, donde disfrutaron de juegos al aire libre, dinámicas grupales, presentaciones culturales, música, piñatas y alimentos típicos de la temporada. Fue un espacio pensado para reforzar los lazos entre compañeros y despedir el año en un entorno positivo y festivo.<br>
+<br>
+Asimismo, en el mes de marzo, la comunidad COBAEJ se unió a la conmemoración del Día Internacional de la Mujer (8M), realizando actividades de reflexión, expresión artística y diálogo sobre la igualdad de género, los derechos humanos y el papel fundamental de la mujer en la sociedad. Se organizaron exposiciones, murales colaborativos, conferencias y presentaciones creativas, donde estudiantes expresaron su visión sobre la equidad y el respeto. <br>
+<br>
+Estas iniciativas reflejan el compromiso del COBAEJ por ofrecer una educación que trasciende el aula, integrando espacios de convivencia, recreación y conciencia social. De este modo, se busca formar no solo estudiantes capaces, sino también ciudadanos empáticos, solidarios y comprometidos con su entorno. <br>
+
+ </p>
+    </div>
+    <div class="derecha">
+      <div class="slider-container">
+        <div id="sliderCivico" class="carousel slide" data-bs-ride="carousel">
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img src="img/img1rec.jpg" alt="Imagen 1">
+            </div>
+            <div class="carousel-item">
+              <img src="img/img2rec.jpg" alt="Imagen 2">
+            </div>
+            <div class="carousel-item">
+              <img src="img/img3rec.jpg" alt="Imagen 3">
+            </div>
+            <div class="carousel-item">
+              <img src="img/img4rec.jpg" alt="Imagen 4">
+            </div>
+            <div class="carousel-item">
+              <img src="img/img5rec.jpg" alt="Imagen 5">
+            </div>
+            <div class="carousel-item">
+              <img src="img/img6rec.jpg" alt="Imagen 6">
+            </div>
+            <div class="carousel-item">
+              <img src="img/img7rec.jpg" alt="Imagen 7">
+            </div>
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#sliderCivico" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#sliderCivico" data-bs-slide="next">
+            <span class="carousel-control-next-icon"></span>
+          </button>
+        </div>
+      </div>
+      <div class="frase" id="fraseMotivacional"></div>
+    </div>
+  </div>
+
+  <script>
+    const frases = [
+"Las actividades recreativas te enseñan que aprender también puede ser divertido.",
+"Convivir, jugar y compartir también forman parte de tu formación.",
+"En cada recreo activo fortaleces cuerpo, mente y amistades.",
+"Participar es conectar, crecer y disfrutar juntos.",
+"El COBAEJ no solo forma estudiantes, también crea momentos que inspiran.",
+    ];
+    document.getElementById('fraseMotivacional').innerText = "" + frases[Math.floor(Math.random() * frases.length)];
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <div class="footer">
+    <div>
+      <img src="img/educacion.png" alt="Educación">
+      <img src="img/logo_cobaej.png" alt="COBAEJ">
+      <img src="img/jalisco_logo.png" alt="Jalisco">
+    </div>
+    <p>Aviso de Privacidad</p>
+    <p>© 2022-2025 COBAEJ, Todos los derechos reservados.</p>
+  </div>
+  <button class="scroll-top-btn" onclick="scrollToTop()">↑</button>
+
+  <script>
+    window.addEventListener('scroll', () => {
+      const btn = document.querySelector('.scroll-top-btn');
+      if (window.scrollY > 100) {
+        btn.style.display = 'flex';
+      } else {
+        btn.style.display = 'none';
+      }
+    });
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  </script>
+  <button class="home-btn" onclick="window.location.href='Pagina Principal.html';">
+    <span class="home-text">Inicio</span>
+    <img src="img/home.png" alt="home" />
+  </button>
+
+</body>
+</html>
